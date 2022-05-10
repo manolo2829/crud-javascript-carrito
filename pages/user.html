@@ -24,7 +24,7 @@
                         <a class="nav-link" href="#">Productos</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link active dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             User
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
@@ -56,42 +56,42 @@
                 <h1 class="text-center" id="titleForm">Sign In</h1>
             </div>
             <div class="row">
-                <form id="formSignUp" class="d-none">
+                <form id="formSignUp" class="d-none pb-5 mb-5">
                     <div class="mb-3">
-                        <label for="inputEmail" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="inputEmail" aria-describedby="errorEmail">
+                        <label for="registerEmail" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="registerEmail" aria-describedby="errorEmail" required>
                         <div id="errorEmail" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="inputPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="inputPassword" aria-describedby="errorPassword">
-                        <div id="errorPassword" class="form-text">We'll never share your email with anyone else.</div>
+                        <label for="registerPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" aria-describedby="registerPasswordError" required>
+                        <div id="registerPasswordError" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="inputPassword2" class="form-label">Confirm password</label>
-                        <input type="password" class="form-control" id="inputPassword2" aria-describedby="errorPassword2">
-                        <div id="errorPassword2" class="form-text">We'll never share your email with anyone else.</div>
+                        <label for="registerPasswordConfirm" class="form-label">Confirm password</label>
+                        <input type="password" class="form-control" id="registerPasswordConfirm" aria-describedby="registerPasswordConfirmError" required>
+                        <div id="registerPasswordConfirmError" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="inputName" class="form-label">Nombre de usuario</label>
-                        <input type="text" class="form-control" id="inputName" aria-describedby="errorName">
-                        <div id="errorName" class="form-text">We'll never share your email with anyone else.</div>
+                        <label for="registerName" class="form-label">Nombre de usuario</label>
+                        <input type="text" class="form-control" id="registerName" aria-describedby="registerNameError" required>
+                        <div id="registerNameError" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary" id="buttonForm">Create</button>
+                    <button type="button" class="btn btn-primary" id="registerButton">Create</button>
                 </form>
                 <form id="formSignIn">
                     <div class="mb-3">
-                        <label for="inputEmail" class="form-label">Email or Username</label>
-                        <input type="email" class="form-control" id="inputEmail" aria-describedby="errorEmail">
-                        <div id="errorEmail" class="form-text">We'll never share your email with anyone else.</div>
+                        <label for="loginName" class="form-label">Email or Username</label>
+                        <input type="email" class="form-control" id="loginName" aria-describedby="loginNameError">
+                        <div id="loginNameError" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="inputPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="inputPassword" aria-describedby="errorPassword">
-                        <div id="errorPassword" class="form-text">We'll never share your email with anyone else.</div>
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" aria-describedby="loginPasswordError">
+                        <div id="loginPasswordError" class="form-text">We'll never share your email with anyone else.</div>
                     </div>                    
-                    <button type="submit" class="btn btn-primary" id="buttonForm">Get In</button>
+                    <button type="button" class="btn btn-primary" id="loginButton">Get In</button>
                 </form>
             </div>
         </div>

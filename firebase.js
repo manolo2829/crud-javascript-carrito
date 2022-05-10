@@ -13,7 +13,7 @@ const firebaseConfig = {
     appId: "1:930881582909:web:947247f62ba4b982fa7754"
 };
 
-import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js"
+import { getDatabase, set, ref, get, child } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js"
 import { getFirestore, collection, addDoc, getDocs  } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"
 
 
@@ -59,6 +59,29 @@ export async function readProductsData(){
         </div>
         `
        porductsContainer.innerHTML += Content;
+    });
+}
+
+export async function writeUserData(email, username, password){
+    const db = getDatabase();
+    await set(ref(db, 'users/' + username), {
+      email,
+      username,
+      password
+    });
+    console.log('creando usuario')
+}
+
+export async function readUsers(){
+    const dbRef = ref(getDatabase());
+    await get(child(dbRef, `users/`)).then((snapshot) => {
+    if (snapshot.exists()) {
+        console.log(snapshot.val())
+    } else {
+        console.log("No data available");
+    }
+    }).catch((error) => {
+    console.error(error);
     });
 }
 
