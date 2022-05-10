@@ -41,6 +41,8 @@ export async function writeProductsData(productTitle, productDescription, produc
     console.log('Producto enviado')
 }
 
+const porductsContainer = document.querySelector('#porductsContainer')
+
 export async function readProductsData(){
     const querySnapshot = await getDocs(collection(db, "products"));
     querySnapshot.forEach((doc) => {
@@ -52,12 +54,18 @@ export async function readProductsData(){
                 <h5 class="card-title">${product.title}</h5>
                 <p class="card-text">${product.description}</p>
                 <p>${product.price}</p>
-                <a href="#" class="card-link w-100">Añadir a Carrito</a>
+                <a href="#" class="card-link w-100 buttonAddCarrito" data-id=${doc.id}>Añadir a Carrito</a>
             </div>
         </div>
         `
-        
+       porductsContainer.innerHTML += Content;
     });
+}
+
+export async function addToCarritoItem(e){
+    const button = e.target;
+    const id = button.dataset.id;
+    console.log(id)
 }
 
 
