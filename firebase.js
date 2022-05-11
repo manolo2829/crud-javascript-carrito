@@ -72,17 +72,26 @@ export async function writeUserData(email, username, password){
     console.log('creando usuario')
 }
 
+let users = null
+
 export async function readUsers(){
+
     const dbRef = ref(getDatabase());
     await get(child(dbRef, `users/`)).then((snapshot) => {
     if (snapshot.exists()) {
-        console.log(snapshot.val())
+        users = snapshot.val()
     } else {
         console.log("No data available");
     }
     }).catch((error) => {
-    console.error(error);
+        console.error(error);
     });
+    
+}
+
+export async function userValidate(name){
+    await readUsers()
+    console.log(users)
 }
 
 export async function addToCarritoItem(e){
@@ -90,5 +99,3 @@ export async function addToCarritoItem(e){
     const id = button.dataset.id;
     console.log(id)
 }
-
-

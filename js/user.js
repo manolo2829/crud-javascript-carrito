@@ -1,5 +1,6 @@
 import { writeUserData } from "../firebase.js"
 import { readUsers } from "../firebase.js"
+import { userValidate } from "../firebase.js"
 
 const titulo = document.querySelector('#titleForm')
 const formSignUp = document.querySelector('#formSignUp')
@@ -17,6 +18,7 @@ registerButton.addEventListener('click', async(e) => {
     const name = await document.querySelector('#registerName').value;
     formSignUp.reset()
 
+
     if(password.trim() === passwordConfirm.trim()){
        await  writeUserData(email, name, password)
        console.log('usuario creado')
@@ -29,9 +31,7 @@ registerButton.addEventListener('click', async(e) => {
 
 // ENCONTRAR ERROR
 loginButton.addEventListener('click', async(e) => {
-    const users = await readUsers()
-    console.log('datos')
-    console.log(users)
+    userValidate()
 })
 
 const obtenerValores = async() => {
