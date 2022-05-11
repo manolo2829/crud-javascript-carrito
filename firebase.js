@@ -15,6 +15,7 @@ const firebaseConfig = {
 
 import { getDatabase, set, ref, get, child } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js"
 import { getFirestore, collection, addDoc, getDocs  } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js"
 
 
 
@@ -24,6 +25,8 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 const db = getFirestore(app);
+
+const auth = getAuth()
 
 
 
@@ -63,35 +66,32 @@ export async function readProductsData(){
 }
 
 export async function writeUserData(email, username, password){
-    const db = getDatabase();
-    await set(ref(db, 'users/' + username), {
-      email,
-      username,
-      password
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user)
+        console.log('creando usuario')
+        const userId = auth.currentUser.uid;
+        console.log('id del usuario: ' + userId)
+        createUserDatabase(userId, email, password, username)
+        console.log('usuario agregado a la base de datos')
+        // ...
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
     });
-    console.log('creando usuario')
 }
 
-let users = null
-
-export async function readUsers(){
-
-    const dbRef = ref(getDatabase());
-    await get(child(dbRef, `users/`)).then((snapshot) => {
-    if (snapshot.exists()) {
-        users = snapshot.val()
-    } else {
-        console.log("No data available");
-    }
-    }).catch((error) => {
-        console.error(error);
+async function createUserDatabase(userId, email, password, username){
+    set(ref(database, 'users/' + userId), {
+        username: username,
+        email: email,
+        password: password
     });
-    
-}
-
-export async function userValidate(name){
-    await readUsers()
-    console.log(users)
+    console.log('agregando al usuario a la base de datos')  
 }
 
 export async function addToCarritoItem(e){
